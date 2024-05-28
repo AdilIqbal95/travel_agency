@@ -9,7 +9,11 @@ public class Customer {
     }
 
     public void buy(int amount) {
-        this.wallet -= amount;
+        if (amount <= this.wallet) {
+            this.wallet -= amount;
+        } else {
+            System.out.println("not enough money");
+        }
     }
 
     public boolean canAfford(int product) {
