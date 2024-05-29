@@ -13,22 +13,19 @@ public class Train implements Bookable {
         this.customers = new ArrayList<>(capacity);
     }
 
-    @Override
     public void book(Customer customer) {
-        if (customer.canAfford(this.price) && this.capacity != 0 ) this.customers.add(customer);
-        // Handle case for not being able to afford
-        //        TODO (Extension)
+       if (customer.canAfford(this.price) && this.hasCapacity() ) {
+           this.customers.add(customer);
+           customer.buy(this.price);
+       }
     }
 
-
-    @Override
     public void cancel(Customer customer) {
         customer.setWallet(this.price); // refund customer
         this.customers.remove(customer);
 
     }
 
-    @Override
     public boolean hasCapacity() {
         if (this.customers.size() < capacity) return true;
         return false;
@@ -42,8 +39,8 @@ public class Train implements Bookable {
         this.price = newPrice;
     }
 
-    public Customer getCustomer(int customerNumber) {
-        return this.customers.get(customerNumber);
+    public ArrayList<Customer> getCustomer() {
+        return this.customers;
     }
 
     public void setCustomer(Customer newCustomer) {

@@ -14,7 +14,7 @@ public class TravelAgent {
     }
 
     public void cancelBooking(Bookable bookable, Customer customer) {
-
+        bookable.cancel(customer);
     }
 
 
